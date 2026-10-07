@@ -730,6 +730,15 @@ GAMES.write = ctx => {
       if (offRun > 0.6 * u) wrongWay();
     }
   }
+  function moveTo(p){
+    ink1(last, p);
+    if (mode === 'trace') follow(p);
+    else if (mode === 'between' && !begin(p, true) && !onDone(p)){
+      wander += Math.hypot(p.x - last.x, p.y - last.y);
+      if (wander > 0.6 * u) mode = null;
+    }
+    last = p;
+  }
   onStrokes(ink, {
     down: p => {
       if (won || !ictx || !strokes.length) return false;
@@ -739,12 +748,10 @@ GAMES.write = ctx => {
     },
     move: p => {
       if (!mode || won){ last = p; return; }
-      ink1(last, p);
-      if (mode === 'trace') follow(p);
-      else if (mode === 'between' && !begin(p, true) && !onDone(p)){
-        wander += Math.hypot(p.x - last.x, p.y - last.y);
-        if (wander > 0.6 * u) mode = null;
-      }
+      // a long way between two reports (a quick finger, a busy device) is taken in short steps, as a finger moves:
+      // in one long step, a "1" written quickly would look like a finger going nowhere
+      const a = last, parts = Math.ceil(Math.hypot(p.x - a.x, p.y - a.y) / (0.15 * u)) || 1;
+      for (let j = 1; j <= parts && mode && !won; j++) moveTo(j === parts ? p : {x:a.x + (p.x - a.x) * j / parts, y:a.y + (p.y - a.y) * j / parts});
       last = p;
     },
     up: () => {

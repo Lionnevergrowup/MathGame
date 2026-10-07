@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c7f0d6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>数学乐园</title>
+<meta name="description" content="一年级数学游戏：跟着人教版一年级上册的顺序，30 课数数、比较、分与合、加减法、立体图形和凑十法。中文 / English.">
+<!-- site icon: a sum, 1 + 2 = ? (icons/icon.svg; tools/make_icons.js draws the other sizes; after a change, raise ?v= here,
+     in manifest.webmanifest and in js/core.js) -->
+<link rel="icon" href="favicon.ico?v=2" sizes="32x32">
+<link rel="icon" href="icons/icon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=2">
+<link rel="manifest" href="manifest.webmanifest?v=2">
+<!-- link previews (when the address is shared in a chat app) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="数学乐园 · Math Fun">
+<meta property="og:description" content="跟小狮子乐乐学数学：一年级上册 30 课。Learn first-grade math with Leo the lion, in Chinese or English.">
+<meta property="og:url" content="https://lionnevergrowup.github.io/MathGame/">
+<meta property="og:image" content="https://lionnevergrowup.github.io/MathGame/icons/icon-512.png?v=2">
+<meta name="twitter:card" content="summary">
+<meta name="apple-mobile-web-app-title" content="数学乐园">
+<link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=8b029ba7c2">
+</head>
+<body>
+<main id="app"></main>
+<noscript><p style="padding:24px;font-size:1.3rem">请打开 JavaScript 才能玩“数学乐园”。Please turn on JavaScript to play Math Fun.</p></noscript>
+<script>
+// Version of this page (the number goes up with every update) and of the files it uses (so a page never mixes with
+// older cached files). tools/stamp.py writes them.
+var APP_VERSION = {n:1, date:'2026-10-07'};
+var ASSET_VERSION = {zh:'9135faa01b', en:'c9dfb6411c', music:'003d67f362'};
+// the clip list of the language this page will speak (the same choice as js/core.js makes)
+(function(){
+  var lang = 'zh', m = /[?&]lang=(zh|en)\b/.exec(location.search);
+  try {
+    if (m) lang = m[1];
+    else {
+      var s = JSON.parse(localStorage.getItem('shuxue-leyuan-v1') || 'null');
+      if (s && s.settings && s.settings.lang) lang = s.settings.lang;
+      else { var c = /(?:^|; )shuxueleyuan=[^;]*\.([01])[0-2][01]{5}(?:;|$)/.exec(document.cookie); if (c && c[1] === '1') lang = 'en'; }
+    }
+  } catch (e) {}
+  if (lang !== 'en') lang = 'zh';
+  document.write('<script src="audio/' + lang + '/manifest.js?v=' + ASSET_VERSION[lang] + '"><\/script>');
+})();
+</script>
+<script src="js/data.js?v=e27365f2c1"></script>
+<script src="js/core.js?v=9c28462408"></script>
+<script src="js/text.js?v=160a67a776"></script>
+<script src="js/art.js?v=fc1194d456"></script>
+<script src="js/games.js?v=707c50d251"></script>
+<script src="js/games2.js?v=860f351d76"></script>
+<script src="js/games3.js?v=847ea5e3fc"></script>
+<script src="js/games4.js?v=1934886c20"></script>
+<script src="js/main.js?v=2b7fea7b6e"></script>
+</body>
+</html>

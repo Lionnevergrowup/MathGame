@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 数学乐园's icon: a first-grade sum, 1 + 2 = ?, with the answer box still to fill in -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fd392"/><stop offset="1" stop-color="#17a663"/></linearGradient>
+  </defs>
+  <rect id="tile" x="2" y="2" width="60" height="60" rx="14" fill="url(#bg)"/>
+  <g id="art" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <g id="sum">
+      <path d="M9 13.94L13.18 9V28"/>
+      <path d="M22.7 18.5H34.3M28.5 12.7V24.3"/>
+      <path d="M41.5 14.13C41.5 10.9 44.45 9 47.39 9C50.92 9 53.28 11.66 53.28 15.08C53.28 18.88 49.75 21.16 41.5 28H53.28"/>
+    </g>
+    <g id="answer">
+      <path d="M14.5 42.9H26.5M14.5 50.1H26.5"/>
+      <rect x="33" y="35" width="21" height="23" rx="5.5" fill="#ffd43b" stroke="none"/>
+      <path d="M39 43.14C39 40.62 41.1 39.5 43.2 39.5C45.72 39.5 47.4 41.32 47.4 43.7C47.4 46.5 43.2 46.5 43.2 49.3" stroke="#e8590c" stroke-width="4.2"/>
+      <circle cx="43.2" cy="53.5" r="2.6" fill="#e8590c" stroke="none"/>
+    </g>
+  </g>
+</svg>

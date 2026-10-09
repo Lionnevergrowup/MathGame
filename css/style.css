@@ -39,11 +39,12 @@ body{
     radial-gradient(ellipse 120px 46px at 80% 12%,rgba(255,255,255,.75) 60%,transparent 61%),
     linear-gradient(180deg,var(--bg1) 0%,#eefae9 50%,var(--bg2) 100%);
   background-attachment:fixed;
-  -webkit-user-select:none;user-select:none;touch-action:manipulation;overflow-x:hidden;
+  -webkit-user-select:none;user-select:none;overflow-x:hidden;
   -webkit-touch-callout:none;   /* no "Copy / Look Up" pop-up when a child long-presses */
   overscroll-behavior-y:contain; /* a downward swipe must not reload the page (Android pull-to-refresh) */
 }
-html{overscroll-behavior-y:contain}
+/* no zooming by pinching or double-tapping (older browsers only know manipulation, which still stops the double tap) */
+html{overscroll-behavior-y:contain;touch-action:manipulation;touch-action:pan-x pan-y}
 button{font-family:inherit;color:inherit}
 [hidden]{display:none!important}
 .mascot .lion,.act-card .ic,.lesson-btn .sticker,.sticker-slot .st,.icon-btn,.listen,.spark,.ob,.ce,.src-e,.target-e,.empty-plate,

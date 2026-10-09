@@ -18,6 +18,15 @@ const activateAudio = () => {
   Music.start();       // nothing happens when it is already playing or switched off
 };
 ['pointerup', 'touchend', 'click', 'keydown'].forEach(t => document.addEventListener(t, activateAudio, true));
+// The page never zooms. The viewport tag in index.html stops pinching on Android, and touch-action in css/style.css on
+// most touch screens; iPhone and iPad Safari let people pinch anyway, so the pinch itself is cancelled here (its
+// gesture events, and touch moves with two fingers). On computers: ctrl + wheel (also what a trackpad pinch sends) and
+// ctrl + plus / minus. Ctrl + 0 still works, to undo a zoom the browser remembered from before.
+const noZoom = e => e.preventDefault();
+['gesturestart', 'gesturechange', 'gestureend'].forEach(t => document.addEventListener(t, noZoom, {passive:false}));
+document.addEventListener('touchmove', e => { if (e.touches.length > 1) e.preventDefault(); }, {passive:false});
+document.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, {passive:false});
+document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && ['+', '=', '-', '_'].includes(e.key)) e.preventDefault(); });
 if (/[?&]v=\d+/.test(location.search)) try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
 window.addEventListener('hashchange', route);
 document.addEventListener('visibilitychange', () => { if (document.hidden){ Speech.stop(); Music.stop(); } else { Music.start(); checkUpdate(); } });
